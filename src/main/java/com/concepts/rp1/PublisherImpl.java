@@ -8,7 +8,8 @@ import org.reactivestreams.Subscriber;
 public class PublisherImpl implements Publisher<String> {
     @Override
     public void subscribe(Subscriber<? super String> subscriber) {
-        var subscriber1=new SubscriberImpl();
-        subscriber.onSubscribe(subscriber1.getSubscription());
+        var subscription=new SubscriptionImpl(subscriber); // let subscriber have subscription obj
+        // make connection with subscriber through subscription
+        subscriber.onSubscribe(subscription);
     }
 }
